@@ -1,0 +1,65 @@
+.NavContainer {
+  width: 100%;
+  background-color: rgb(69, 67, 67);
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+  padding: 0.5rem;
+}
+.AppTitle {
+  display: flex;
+  align-items: center;
+}
+.AppTitle:hover {
+  cursor: pointer;
+}
+.NavSearch {
+  display: flex;
+  gap: 0.2rem;
+}
+.NavSearchInput {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  width: 80vh;
+  height: 70%;
+}
+.NavSearchInput:focus {
+  outline: none;
+  border: none;
+}
+.SearchButton {
+  border-radius: 0.25rem;
+  outline: none;
+  background-color: green;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  font-weight: bold;
+  width: 10vh;
+  height: 90%;
+}
+.SearchButton::placeholder {
+  color: gray;
+  font-weight: bold;
+}
+.SearchButton:hover {
+  cursor: pointer;
+  padding: 0.7rem;
+  background-color: dodgerblue;
+}
+
+.rightWrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.rightItems {
+  padding: 1rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.item-one:hover,
+.item-two:hover {
+  cursor: pointer;
+  font-size: 17px;
+  background-color: rgb(88, 88, 88);
+}
