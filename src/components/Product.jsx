@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "./Rating";
 
 const Product = ({ product }) => {
   return (
@@ -13,7 +14,14 @@ const Product = ({ product }) => {
           </a>
         </div>
         <div className="productRating">
-          {product.rating} from {product.numReviews} reviews
+          <p className="reviewsNumber">
+            {product.rating} from {product.numReviews} reviews
+          </p>
+          <Rating
+            value={product.rating}
+            text={`${product.numReviews} reviews`}
+            color={"#f8e825"}
+          />
         </div>
         <h3 className="productPrice">${product.price}</h3>
       </div>
