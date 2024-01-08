@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-around;
   color: #fff;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 .AppTitle {
   display: flex;
@@ -62,4 +62,47 @@
   cursor: pointer;
   font-size: 17px;
   background-color: rgb(88, 88, 88);
+}
+
+.homeContainer {
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-right: 2rem;
+}
+
+.productsList {
+  display: grid;
+  margin-top: 2rem;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+}
+
+.productItems {
+  border: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.productsImage {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 1rem;
+}
+
+.productName,
+.productRating,
+.productPrice {
+  margin-bottom: 1rem;
+}
+
+.footerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
