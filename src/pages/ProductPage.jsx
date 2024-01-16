@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../components/Rating";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../actions/productActions";
 import Loader from "../components/Loader";
@@ -29,7 +28,7 @@ const ProductPage = () => {
       ) : (
         <div className="productDetails">
           <img
-            src={product.image}
+            src={`http://localhost:8000${product.image}`}
             alt={product.name}
             className="productPageImage"
           />

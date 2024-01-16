@@ -6,7 +6,11 @@ const Product = ({ product }) => {
   return (
     <div className="productItems">
       <Link to={`/product/${product._id}`}>
-        <img src={product.image} alt="" className="productsImage" />
+        <img
+          src={`http://localhost:8000${product.image}`}
+          alt=""
+          className="productsImage"
+        />
       </Link>
       <div className="productItemsBody">
         <div className="productName">
