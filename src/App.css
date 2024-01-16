@@ -226,3 +226,28 @@ a {
   align-items: center;
   justify-content: center;
 }
+
+/* Select DropDown */
+
+.qtyValue {
+  padding: 0.5rem;
+  border: 1px solid #000;
+  width: 100px;
+}
+
+.priceItem,
+.statusItem,
+.selectDropDown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stockStatus,
+.priceValue {
+  width: 100px;
+}
+
+.qtyOption {
+  border: 1px solid #000;
+  border-radius: 1px;
+}
