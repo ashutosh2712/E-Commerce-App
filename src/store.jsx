@@ -19,11 +19,11 @@ const reducer = combineReducers({
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
-  ? JSON.parse(getItem("cartItems"))
+  ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
 const initialState = {
-  cart: { cartItemsFromStorage },
+  // cart: { cartItemsFromStorage },
 };
 
 const middleware = [thunk];
