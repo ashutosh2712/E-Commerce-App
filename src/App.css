@@ -132,6 +132,22 @@ a {
   cursor: pointer;
 }
 
+/*Cart Page Home Link*/
+
+.homeLinkFromCart {
+  border: none;
+  background: none;
+  height: 2.5rem;
+  margin: 2rem;
+  border-radius: 0.25rem;
+  color: dodgerblue;
+  text-decoration: underline;
+}
+.homeLinkFromCart:hover {
+  color: #fff;
+  background-color: green;
+  cursor: pointer;
+}
 .productDetails {
   display: grid;
   grid-template-rows: auto;
@@ -254,4 +270,85 @@ a {
 .qtyOption {
   border: 1px solid #000;
   border-radius: 1px;
+}
+
+/*Cart Page*/
+.cartTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.cartItemImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.cartProduct {
+  width: 230px;
+}
+
+.allCartItems {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+.allCartItem {
+  display: flex;
+  justify-content: space-between;
+  height: 20vh;
+  width: 85vh;
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartItemData {
+  display: flex;
+}
+
+.cartProductQty {
+  display: flex;
+  justify-content: space-around;
+  width: 15vh;
+}
+
+.cartQtyValue {
+  padding: 0.5rem;
+  border: 1px solid #000;
+  width: 55px;
+  height: 30px;
+}
+
+.deleteCartItem {
+  width: 55px;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.fa-trash {
+  color: tomato;
+}
+
+.fa-trash:hover {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.cartSelectDelete {
+  gap: 15px;
+}
+
+.cartSubtotalContainer {
+  margin-top: 2rem;
 }

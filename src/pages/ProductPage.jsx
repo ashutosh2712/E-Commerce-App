@@ -29,7 +29,7 @@ const ProductPage = () => {
   return (
     <div className="productPageContainer">
       <Link to="/">
-        <button className="homeLink">Go back</button>
+        <button className="homeLink">Go Back</button>
       </Link>
       {loading ? (
         <Loader />
