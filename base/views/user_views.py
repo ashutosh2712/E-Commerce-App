@@ -1,5 +1,5 @@
-from .models import Product
-from .serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
+
+from ..serializers import UserSerializer, UserSerializerWithToken
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -25,11 +25,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
-
-
-@api_view(["GET"])
-def getRoutes(request):
-    return Response("Welcome to E-commerce BackEnd")
 
 
 @api_view(['POST'])
@@ -63,20 +58,5 @@ def getUserProfile(request):
 def getUsers(request):
     user = User.objects.all()  # user from token not the admin side suer
     serializer = UserSerializer(user, many=True)
-
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-def getProducts(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-def getProduct(request, pk):
-    product = Product.objects.get(_id=pk)
-    serializer = ProductSerializer(product, many=False)
 
     return Response(serializer.data)
