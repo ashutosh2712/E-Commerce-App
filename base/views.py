@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Product
 from .serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
 
@@ -30,9 +31,19 @@ def getRoutes(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getUserProfile(request):
     user = request.user  # user from token not the admin side suer
     serializer = UserSerializer(user, many=False)
+
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def getUsers(request):
+    user = User.objects.all()  # user from token not the admin side suer
+    serializer = UserSerializer(user, many=True)
 
     return Response(serializer.data)
 
