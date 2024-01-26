@@ -27,9 +27,11 @@ const Navbar = () => {
             <i className="fas fa-shopping-cart"></i> Cart
           </span>
         </Link>
-        <span className="rightItems item-two">
-          <i className="fas fa-user"></i> Sign in
-        </span>
+        <Link to="login/" className="navbarEndItems">
+          <span className="rightItems item-two">
+            <i className="fas fa-user"></i> Login
+          </span>
+        </Link>
       </div>
     </div>
   );

@@ -1,3 +1,7 @@
+:root {
+  --color-input : rgb(213, 237, 229);
+}
+
 a {
   text-decoration: none;
   color: dodgerblue;
@@ -351,4 +355,53 @@ a {
 
 .cartSubtotalContainer {
   margin-top: 2rem;
+}
+
+/* ========== FORM ========= */
+.formContainer{
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+}
+
+.formWrapper{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  
+}
+
+.registerForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 0 1rem 0;
+  
+}
+
+.registerForm input {
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+
+  outline: none;
+  border: none;
+  width: 50vh;
+  background-color:var(--color-input)
+}
+
+.registerForm label {
+  padding: 0.5rem 0 ;
+}
+
+.btn-register{
+  padding: 0.55rem;
+  width: fit-content;
+  background-color: #000;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.btn-register:hover {
+  cursor: pointer;
+  font-weight: Bold;
+  font-size: 14px;
 }
