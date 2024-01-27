@@ -455,3 +455,11 @@ p:hover {
   font-weight: Bold;
   font-size: 14px;
 }
+
+/* User Profile Page */
+.userProfileContianer{
+  display: grid;
+  grid-template-columns: 30% 50%;
+  margin-left: 5rem;
+  margin-top: 1rem;
+}
