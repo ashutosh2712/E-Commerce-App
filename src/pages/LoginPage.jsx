@@ -41,15 +41,17 @@ const LoginPage = () => {
             name="email"
             id="email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter Email"
           />
-          <label htmlFor="password">Paswsword</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Your Password"
           />

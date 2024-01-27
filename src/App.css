@@ -431,7 +431,7 @@ p:hover {
 
 .registerForm input {
   padding: 0.75rem 0.75rem 0.5rem 1rem;
-
+  margin-top: 0.5rem;
   outline: none;
   border: none;
   width: 50vh;
