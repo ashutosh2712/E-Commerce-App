@@ -23,6 +23,7 @@ const LoginPage = () => {
       navigate(redirect);
     }
   }, [userInfo, redirect]);
+  
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(login(email, password));
