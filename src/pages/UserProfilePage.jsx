@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getUserDetails } from "../actions/userAction";
+import { getUserDetails, updateUserProfile } from "../actions/userAction";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstant";
 
 const UserProfilePage = () => {
   const [name, setName] = useState("");
@@ -21,18 +22,23 @@ const UserProfilePage = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
+
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user || !user.name) {
+      if (!user || !user.name || success) {
+        dispatch({type: USER_UPDATE_PROFILE_RESET})
         dispatch(getUserDetails("profile"));
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [userInfo, user]);
+  }, [userInfo, user,success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -40,12 +46,19 @@ const UserProfilePage = () => {
     if (password != confirmPassword) {
       setMessage("*Password Do not match!Try again");
     } else {
-      console.log("Updating..");
+      dispatch(
+        updateUserProfile({
+          "id": user._id,
+          "name": name,
+          "email": email,
+          "password": password,
+        })
+      );
+      setMessage("");
     }
   };
   return (
     <div className="userProfileContianer">
-
       <div className="userProfileInfo">
         <h2>User Profile</h2>
         {message && <Message>{message}</Message>}

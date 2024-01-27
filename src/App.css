@@ -462,4 +462,5 @@ p:hover {
   grid-template-columns: 30% 50%;
   margin-left: 5rem;
   margin-top: 1rem;
+  height: 85vh;
 }
