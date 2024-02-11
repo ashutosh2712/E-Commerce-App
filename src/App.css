@@ -464,3 +464,23 @@ p:hover {
   margin-top: 1rem;
   height: 85vh;
 }
+
+/*Checkout steps component*/
+.checkoutStepContainer{
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-bottom: 2rem;
+  font-size: 18px;
+}
+
+.checkoutStepContainer a{
+  color: #000;
+}
+
+.checkoutStepDisabled{
+  color: #fff;
+  width: 10rem;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
