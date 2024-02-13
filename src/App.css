@@ -484,3 +484,26 @@ p:hover {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+/* Payment Page */
+.paymentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  height: 80vh;
+}
+
+.paymentContainer form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.selectLabel{
+  font-size: 1.5rem;
+}
+
+.paymentChoose{
+  margin-left: 1rem;
+}
