@@ -29,9 +29,9 @@ const CartPage = () => {
   };
 
   const checkoutHandler = () => {
-    if(!userInfo) {
-      navigate('/login')
-    }else{
+    if (!userInfo) {
+      navigate("/login");
+    } else {
       navigate("/shipping");
     }
   };

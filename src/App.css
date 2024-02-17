@@ -507,3 +507,47 @@ p:hover {
 .paymentChoose{
   margin-left: 1rem;
 }
+
+/* Place Order Page */
+.placeorderContainer{
+  margin-top: 2rem;
+}
+
+.containerItems{
+  display: grid;
+  grid-template-columns: 60% 25%;
+  margin-left: 5rem;
+  margin-top: 1rem;
+  height: auto;
+}
+
+.shippingSummary{
+  width: auto;
+  height: auto;
+}
+
+.placeOrderImage{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  
+}
+
+.orderProductDetails{
+  display: grid;
+  grid-template-columns: 18% 50% 32%;
+}
+
+.orderItemSum{
+  padding-top: 0;
+}
+.orderItemSum:hover{
+  cursor: auto;
+  background: none;
+}
+
+.placeOrderFinal{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
