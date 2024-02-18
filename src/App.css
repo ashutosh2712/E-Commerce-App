@@ -347,20 +347,23 @@ p:hover {
 }
 
 .allCartItems {
-  display: flex;
-  flex-direction: column;
   margin-left: 3rem;
   margin-top: 1rem;
   padding: 0;
 }
 
 .allCartItem {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 30% 40% 15% 15%;
   height: 20vh;
   width: 85vh;
   list-style: none;
   margin-top: 1rem;
+}
+
+.allCartItemParent{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .cartContainer {
@@ -368,8 +371,14 @@ p:hover {
   flex-direction: column;
 }
 
-.cartItemData {
-  display: flex;
+
+.cartProduct, .cartProductPrice {
+  padding-top: 0;
+}
+
+.cartProduct:hover, .cartProductPrice:hover {
+  background: none;
+  cursor: default;
 }
 
 .cartProductQty {

@@ -1,10 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutSteps from "./CheckoutSteps";
 import Message from "./Message";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createOrder } from "../actions/orderAction";
+import { ORDER_CREATE_RESET } from "../constants/orderConstant";
 
 const PlaceOrderPage = () => {
+  const navigate = useNavigate();
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, error, success } = orderCreate;
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
   cart.itemsPrice = cart.cartItems
@@ -21,8 +27,29 @@ const PlaceOrderPage = () => {
     Number(cart.taxPrice)
   ).toFixed(2);
 
+  if (!cart.paymentMethod) {
+    navigate("/payment");
+  }
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [success]);
+
   const placeOrder = () => {
-    console.log("placeOrder");
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
   };
   return (
     <div className="placeorderContainer">
@@ -93,7 +120,13 @@ const PlaceOrderPage = () => {
             <p className="orderItemSum">${cart.totalPrice}</p>
           </li>
 
-          <div className="listGroupItem">
+          {error && (
+            <li className="listGroupItem">
+              <Message>{error}</Message>
+            </li>
+          )}
+
+          <li className="listGroupItem">
             <button
               type="submit"
               className={
@@ -104,7 +137,7 @@ const PlaceOrderPage = () => {
             >
               Place Order
             </button>
-          </div>
+          </li>
         </ul>
       </div>
     </div>

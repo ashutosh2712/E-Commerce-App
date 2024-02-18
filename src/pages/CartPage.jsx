@@ -50,7 +50,7 @@ const CartPage = () => {
             </Link>
           </Message>
         ) : (
-          <>
+          <div className="allCartItemParent">
             <ul className="allCartItems">
               {cartItems.map((item) => (
                 <li className="listGroupItem allCartItem" key={item.product}>
@@ -62,11 +62,10 @@ const CartPage = () => {
                   <p className="cartProduct">
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </p>
+
                   <p className="cartProductPrice">${item.price}</p>
+
                   <div className="cartProductQty">
-                    <label htmlFor="qtyNumber" className="qtyLabel">
-                      Qty:
-                    </label>
                     <select
                       name="qtyNumber"
                       id="qtyNumber"
@@ -123,7 +122,7 @@ const CartPage = () => {
                 </button>
               </li>
             </ul>
-          </>
+          </div>
         )}
       </div>
     </div>
