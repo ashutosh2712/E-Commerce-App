@@ -67,7 +67,7 @@ class OrderItem(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
-        return self(self.name)
+        return str(self.name)
 
 
 class ShippingAddress(models.Model):
