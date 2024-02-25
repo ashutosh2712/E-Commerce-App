@@ -291,9 +291,9 @@ p:hover {
   animation: rotation 1s linear infinite;
 }
 
+/* Message Conatiner */
+
 .messageContainer {
-  background: rgb(247, 178, 178);
-  color: red;
   height: 3vh;
   margin: 1rem;
   padding: 1rem;
@@ -301,6 +301,20 @@ p:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.successMessage{
+  background: rgb(164, 237, 179);
+  color: rgb(1, 29, 1);
+}
+
+.errorMessage{
+  background: rgb(247, 178, 178);
+  color: red;
+}
+.warningMessage{
+  background: rgb(233, 233, 115);
+  color: #000
 }
 
 /* Select DropDown */
@@ -559,4 +573,9 @@ p:hover {
 .placeOrderFinal{
   display: grid;
   grid-template-columns: repeat(2,1fr);
+}
+
+/*Order Page */
+.orderHeader{
+  margin-left: 5rem;
 }

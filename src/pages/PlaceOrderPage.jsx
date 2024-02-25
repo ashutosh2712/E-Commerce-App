@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CheckoutSteps from "./CheckoutSteps";
-import Message from "./Message";
+import CheckoutSteps from "../components/CheckoutSteps";
+import Message from "../components/Message";
 import { Link, useNavigate } from "react-router-dom";
 import { createOrder } from "../actions/orderAction";
 import { ORDER_CREATE_RESET } from "../constants/orderConstant";
