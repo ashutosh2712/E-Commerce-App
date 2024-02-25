@@ -20,7 +20,7 @@ const Home = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message>{error}</Message>
+        <Message className="errorMessage">{error}</Message>
       ) : (
         <div className="productsList">
           {products.map((product) => (

@@ -43,8 +43,8 @@ const CartPage = () => {
       </div>
       <div className="cartItemData">
         {cartItems.length == 0 ? (
-          <Message>
-            <p className="emptyCartMessage">*Your Cart is empty</p>{" "}
+          <Message className="errorMessage">
+            *Your Cart is empty
             <Link to="/">
               <button className="homeLinkFromCart">Go Back</button>
             </Link>

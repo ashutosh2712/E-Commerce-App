@@ -25,20 +25,19 @@ const UserProfilePage = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     } else {
       if (!user || !user.name || success) {
-        dispatch({type: USER_UPDATE_PROFILE_RESET})
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [userInfo, user,success]);
+  }, [userInfo, user, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -48,10 +47,10 @@ const UserProfilePage = () => {
     } else {
       dispatch(
         updateUserProfile({
-          "id": user._id,
-          "name": name,
-          "email": email,
-          "password": password,
+          id: user._id,
+          name: name,
+          email: email,
+          password: password,
         })
       );
       setMessage("");
@@ -61,8 +60,8 @@ const UserProfilePage = () => {
     <div className="userProfileContianer">
       <div className="userProfileInfo">
         <h2>User Profile</h2>
-        {message && <Message>{message}</Message>}
-        {error && <Message>{error}</Message>}
+        {message && <Message className="successMessage">{message}</Message>}
+        {error && <Message className="errorMessage">{error}</Message>}
         {loading && <Loader />}
         <form onSubmit={submitHandler} className="registerForm">
           <label htmlFor="name">Name</label>

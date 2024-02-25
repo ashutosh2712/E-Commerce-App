@@ -39,8 +39,8 @@ const RegisterPage = () => {
     <FormContainer>
       <div className="formWrapper">
         <h1>Register</h1>
-        {message && <Message>{message}</Message>}
-        {error && <Message>{error}</Message>}
+        {message && <Message className="successMessage">{message}</Message>}
+        {error && <Message className="errorMessage">{error}</Message>}
         {loading && <Loader />}
         <form onSubmit={submitHandler} className="registerForm">
           <label htmlFor="name">Name</label>

@@ -34,7 +34,7 @@ const ProductPage = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message>{error}</Message>
+        <Message className="errorMessage">{error}</Message>
       ) : (
         <div className="productDetails">
           <img

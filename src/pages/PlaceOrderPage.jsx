@@ -76,7 +76,7 @@ const PlaceOrderPage = () => {
           <li className="listGroupItem">
             <h2 style={{ marginBottom: "1rem" }}>Order Items</h2>
             {cart.cartItems.length === 0 ? (
-              <Message>Your cart is empty</Message>
+              <Message className="errorMessage">Your cart is empty</Message>
             ) : (
               <ul className="listGroup shippingSummary">
                 {cart.cartItems.map((item, index) => (
@@ -122,7 +122,7 @@ const PlaceOrderPage = () => {
 
           {error && (
             <li className="listGroupItem">
-              <Message>{error}</Message>
+              <Message className="errorMessage">{error}</Message>
             </li>
           )}
 
