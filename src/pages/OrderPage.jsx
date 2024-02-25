@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getOrderDetails } from "../actions/orderAction";
+import { getOrderDetails, payOrder } from "../actions/orderAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { PayPalButtons } from "@paypal/react-paypal-js";
+import { ORDER_PAY_RESET } from "../constants/orderConstant";
 
 const OrderPage = () => {
   const { id } = useParams();
   const orderId = id;
 
-  const navigate = useNavigate();
+  const [sdkReady, setSdkReady] = useState(false);
 
   const dispatch = useDispatch();
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, error, loading } = orderDetails;
+
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: lodingPay, success: successPay } = orderPay;
 
   if (!loading && !error) {
     order.itemsPrice = order.orderItems
@@ -21,11 +26,41 @@ const OrderPage = () => {
       .toFixed(2);
   }
 
-  useEffect(() => {
-    if (!order || order._id !== Number(orderId)) {
-      dispatch(getOrderDetails(orderId));
+  const onCreateOrder = (data, actions) => {
+    // Check if order details are available
+    if (!order) {
+      console.error("Order details not available");
+      return;
     }
-  }, [dispatch, order, orderId]);
+
+    // Construct the order object using the total price
+    const setOrderCurValue = {
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: order.totalPrice, // Total order amount
+          },
+        },
+      ],
+    };
+
+    // Return the order object to initiate the order creation process
+    return actions.order.create(setOrderCurValue);
+  };
+
+  useEffect(() => {
+    if (!order || successPay || order._id !== Number(orderId)) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch(getOrderDetails(orderId));
+    } else if (!order.isPaid) {
+      setSdkReady(true);
+    }
+  }, [dispatch, order, orderId, successPay]);
+
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(orderId, paymentResult));
+  };
 
   return loading ? (
     <Loader />
@@ -123,6 +158,21 @@ const OrderPage = () => {
             <p className="orderItemSum">Total:</p>
             <p className="orderItemSum">${order.totalPrice}</p>
           </li>
+
+          {!order.isPaid && (
+            <li className="listGroupItem placeOrderFinal">
+              {lodingPay && <Loader />}
+              {!sdkReady ? (
+                <Loader />
+              ) : (
+                <PayPalButtons
+                  style={{ layout: "vertical" }}
+                  createOrder={(data, actions) => onCreateOrder(data, actions)}
+                  onApprove={successPaymentHandler}
+                />
+              )}
+            </li>
+          )}
         </ul>
       </div>
     </div>

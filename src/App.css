@@ -334,9 +334,13 @@ p:hover {
 
 .stockStatus,
 .priceValue {
-  width: 100px;
+  width: auto;
 }
 
+.stockStatus{
+  padding-left: 0;
+  padding-right: 0;
+}
 .qtyOption {
   border: 1px solid #000;
   border-radius: 1px;
