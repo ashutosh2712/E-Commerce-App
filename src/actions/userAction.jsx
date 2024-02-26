@@ -15,6 +15,7 @@ import {
   USER_UPDATE_PROFILE_FAIL,
   USER_DETAILS_RESET,
 } from "../constants/userConstant";
+import { ORDER_LIST_MY_RESET } from "../constants/orderConstant";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -31,8 +32,8 @@ export const login = (email, password) => async (dispatch) => {
     const { data } = await axios.post(
       "http://127.0.0.1:8000/api/users/login",
       {
-        "username": email,
-        "password": password,
+        username: email,
+        password: password,
       },
       config
     );
@@ -67,9 +68,9 @@ export const register = (name, email, password) => async (dispatch) => {
     const { data } = await axios.post(
       "http://127.0.0.1:8000/api/users/register",
       {
-        "name": name,
-        "email": email,
-        "password": password,
+        name: name,
+        email: email,
+        password: password,
       },
       config
     );
@@ -98,7 +99,8 @@ export const register = (name, email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
-  dispatch({type: USER_DETAILS_RESET})
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
 };
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
@@ -108,13 +110,13 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     });
 
     const {
-      userLogin : {userInfo}
-    } = getState()
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
@@ -144,13 +146,13 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     });
 
     const {
-      userLogin : {userInfo}
-    } = getState()
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
@@ -170,7 +172,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
-
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,

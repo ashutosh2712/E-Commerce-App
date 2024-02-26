@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserDetails, updateUserProfile } from "../actions/userAction";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstant";
+import { listMyOrders } from "../actions/orderAction";
 
 const UserProfilePage = () => {
   const [name, setName] = useState("");
@@ -25,6 +26,27 @@ const UserProfilePage = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9; // Set the number of items per page
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(orders.length / itemsPerPage);
+
+  // Calculate index range for current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, orders.length);
+
+  // Slice orders array to get items for current page
+  const currentOrders = orders.slice(startIndex, endIndex);
+
+  // Event handler for changing page
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
@@ -32,6 +54,7 @@ const UserProfilePage = () => {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
+        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -109,9 +132,76 @@ const UserProfilePage = () => {
           </button>
         </form>
       </div>
-
       <div className="userOrderInfo">
         <h2>My orders</h2>
+        {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message className="errorMessage">{errorOrders}</Message>
+        ) : (
+          <>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Total</th>
+                  <th>Paid</th>
+                  <th>Delivered</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentOrders.map((order) => (
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
+                    <td>{order.createdAt.substring(0, 10)}</td>
+                    <td>${order.totalPrice}</td>
+                    <td>
+                      {order.isPaid ? (
+                        order.paidAt.substring(0, 10)
+                      ) : (
+                        <i className="fas fa-times"></i>
+                      )}
+                    </td>
+                    <td>
+                      <Link to={`/order/${order._id}`}>
+                        <button className="btn-register btn-dtl">
+                          Details
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    disabled={currentPage === page}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
