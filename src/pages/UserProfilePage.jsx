@@ -30,17 +30,19 @@ const UserProfilePage = () => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // Set the number of items per page
+  const itemsPerPage = 8; // Set the number of items per page
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(orders.length / itemsPerPage);
+  const totalPages = orders ? Math.ceil(orders.length / itemsPerPage) : 0;
 
   // Calculate index range for current page
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, orders.length);
+  const endIndex = orders
+    ? Math.min(startIndex + itemsPerPage, orders.length)
+    : 0;
 
   // Slice orders array to get items for current page
-  const currentOrders = orders.slice(startIndex, endIndex);
+  const currentOrders = orders ? orders.slice(startIndex, endIndex) : [];
 
   // Event handler for changing page
   const handlePageChange = (page) => {
@@ -175,8 +177,9 @@ const UserProfilePage = () => {
                 ))}
               </tbody>
             </table>
-            <div>
+            <div className="pagination">
               <button
+                className="btn-register"
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
               >
@@ -185,6 +188,7 @@ const UserProfilePage = () => {
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (page) => (
                   <button
+                    className="paginationBtn"
                     key={page}
                     onClick={() => handlePageChange(page)}
                     disabled={currentPage === page}
@@ -194,6 +198,7 @@ const UserProfilePage = () => {
                 )
               )}
               <button
+                className="btn-register"
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >

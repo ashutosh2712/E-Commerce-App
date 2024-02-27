@@ -609,3 +609,16 @@ th {
 .btn-dtl{
   margin: 0;
 }
+
+/* Pagination component */
+.pagination{
+  margin-bottom: 1rem;
+}
+
+.paginationBtn{
+  width: auto;
+  padding: 0.5rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  cursor: pointer;
+}
