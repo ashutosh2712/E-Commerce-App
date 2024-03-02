@@ -15,7 +15,7 @@ const OrderPage = () => {
 
   const dispatch = useDispatch();
   const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, error, loading } = orderDetails;
+  const { order, error, loading, success } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: lodingPay, success: successPay } = orderPay;
@@ -56,7 +56,7 @@ const OrderPage = () => {
     } else if (!order.isPaid) {
       setSdkReady(true);
     }
-  }, [dispatch, order, orderId, successPay]);
+  }, [dispatch, order, orderId, successPay, success]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult));
@@ -160,7 +160,7 @@ const OrderPage = () => {
           </li>
 
           {!order.isPaid && (
-            <li className="listGroupItem placeOrderFinal">
+            <li className="listGroupItem">
               {lodingPay && <Loader />}
               {!sdkReady ? (
                 <Loader />

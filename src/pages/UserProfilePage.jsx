@@ -146,10 +146,10 @@ const UserProfilePage = () => {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Date</th>
-                  <th>Total</th>
-                  <th>Paid</th>
-                  <th>Delivered</th>
+                  <th>DATE</th>
+                  <th>TOTAL</th>
+                  <th>PAID</th>
+                  <th>DELIVERED</th>
                   <th></th>
                 </tr>
               </thead>

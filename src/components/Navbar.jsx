@@ -9,12 +9,16 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenUser, setIsOpenUser] = useState(false);
+  const [isOpenAdmin, setIsOpenAdmin] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (!e.target.closest(".dropdown")) {
-        setIsOpen(false);
+      if (!e.target.closest(".dropdownUser")) {
+        setIsOpenUser(false);
+      }
+      if (!e.target.closest(".dropdownAdmin")) {
+        setIsOpenAdmin(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -23,8 +27,14 @@ const Navbar = () => {
     };
   }, []);
 
-  const showDropdown = () => {
-    setIsOpen(!isOpen);
+  const showUserDropdown = () => {
+    setIsOpenUser(!isOpenUser);
+    console.log("user");
+  };
+
+  const showAdminDropdown = () => {
+    setIsOpenAdmin(!isOpenAdmin);
+    console.log("admin");
   };
 
   const logoutHandler = () => {
@@ -38,6 +48,7 @@ const Navbar = () => {
           <h2>CLICKSHOP</h2>
         </Link>
       </div>
+
       <div className="NavSearch">
         <input
           className="NavSearchInput"
@@ -50,6 +61,7 @@ const Navbar = () => {
           Search
         </button>
       </div>
+
       <div className="rightWrapper">
         <Link to="cart/" className="navbarEndItems">
           <span className="rightItems item-one">
@@ -58,13 +70,13 @@ const Navbar = () => {
         </Link>
 
         {userInfo ? (
-          <div className="dropdown">
-            <button onClick={showDropdown} className="dropbtn rightItems">
+          <div className="dropdownUser">
+            <button onClick={showUserDropdown} className="dropbtn rightItems">
               <div className="userDropdownInfo">
                 {userInfo.name}&nbsp;&#x2B9F;
               </div>
             </button>
-            {isOpen && (
+            {isOpenUser && (
               <div id="myDropdown" className="dropdown-content">
                 <Link to="/profile">Profile</Link>
                 <p onClick={logoutHandler}>Logout</p>
@@ -77,6 +89,21 @@ const Navbar = () => {
               <i className="fas fa-user"></i> Login
             </span>
           </Link>
+        )}
+
+        {userInfo && userInfo.isAdmin && (
+          <div className="dropdownAdmin">
+            <button onClick={showAdminDropdown} className="dropbtn rightItems">
+              <div className="userDropdownInfo">Admin&nbsp;&#x2B9F;</div>
+            </button>
+            {isOpenAdmin && (
+              <div id="myUsers" className="dropdown-content">
+                <Link to="/admin/userlist">Users</Link>
+                <Link to="/admin/productlist">Products</Link>
+                <Link to="/admin/orderlist">Orders</Link>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
