@@ -45,6 +45,7 @@ const RegisterPage = () => {
         <form onSubmit={submitHandler} className="registerForm">
           <label htmlFor="name">Name</label>
           <input
+            className="registerInput"
             type="text"
             name="name"
             id="name"
@@ -56,6 +57,7 @@ const RegisterPage = () => {
 
           <label htmlFor="email">Email Address</label>
           <input
+            className="registerInput"
             type="email"
             name="email"
             id="email"
@@ -66,6 +68,7 @@ const RegisterPage = () => {
           />
           <label htmlFor="password">Password</label>
           <input
+            className="registerInput"
             type="password"
             name="password"
             id="password"
@@ -77,6 +80,7 @@ const RegisterPage = () => {
 
           <label htmlFor="ConfirmPassword">Confirm Password</label>
           <input
+            className="registerInput"
             type="password"
             name="ConfirmPassword"
             id="ConfirmPassword"

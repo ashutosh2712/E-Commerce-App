@@ -37,6 +37,7 @@ const LoginPage = () => {
         <form onSubmit={submitHandler} className="registerForm">
           <label htmlFor="email">Email Address</label>
           <input
+            className="registerInput"
             type="email"
             name="email"
             id="email"
@@ -47,6 +48,7 @@ const LoginPage = () => {
           />
           <label htmlFor="password">Password</label>
           <input
+            className="registerInput"
             type="password"
             name="password"
             id="password"

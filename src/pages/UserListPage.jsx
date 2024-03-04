@@ -108,7 +108,7 @@ const UserListPage = () => {
                   )}
                 </td>
                 <td>
-                  <Link to={`/admin/user/${user._id}`}>
+                  <Link to={`/admin/user/${user._id}/edit`}>
                     <button>
                       <i className="fas fa-edit"></i>
                     </button>

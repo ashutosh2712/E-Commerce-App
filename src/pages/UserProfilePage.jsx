@@ -53,7 +53,7 @@ const UserProfilePage = () => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user || !user.name || success) {
+      if (!user || !user.name || success || userInfo._id !== user._id) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
@@ -91,6 +91,7 @@ const UserProfilePage = () => {
         <form onSubmit={submitHandler} className="registerForm">
           <label htmlFor="name">Name</label>
           <input
+            className="registerInput"
             type="text"
             name="name"
             id="name"
@@ -102,6 +103,7 @@ const UserProfilePage = () => {
 
           <label htmlFor="email">Email Address</label>
           <input
+            className="registerInput"
             type="email"
             name="email"
             id="email"
@@ -112,6 +114,7 @@ const UserProfilePage = () => {
           />
           <label htmlFor="password">Password</label>
           <input
+            className="registerInput"
             type="password"
             name="password"
             id="password"
@@ -122,6 +125,7 @@ const UserProfilePage = () => {
 
           <label htmlFor="ConfirmPassword">Confirm Password</label>
           <input
+            className="registerInput"
             type="password"
             name="ConfirmPassword"
             id="ConfirmPassword"

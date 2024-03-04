@@ -31,6 +31,7 @@ const ShippingPage = () => {
         <form onSubmit={submitHandler} className="registerForm">
           <label htmlFor="address">Address</label>
           <input
+            className="registerInput"
             required
             type="text"
             value={address ? address : ""}
@@ -40,6 +41,7 @@ const ShippingPage = () => {
 
           <label htmlFor="city">City</label>
           <input
+            className="registerInput"
             required
             type="text"
             value={city ? city : ""}
@@ -49,6 +51,7 @@ const ShippingPage = () => {
 
           <label htmlFor="postalCode">Postal Code</label>
           <input
+            className="registerInput"
             required
             type="text"
             value={postalcode ? postalcode : ""}
@@ -58,6 +61,7 @@ const ShippingPage = () => {
 
           <label htmlFor="country">Country</label>
           <input
+            className="registerInput"
             required
             type="text"
             value={country ? country : ""}
