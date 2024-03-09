@@ -443,7 +443,7 @@ p:hover {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 85vh;
+  height: auto;
 }
 
 .formWrapper {
