@@ -698,3 +698,23 @@ th {
 .isCheckedInp{
   width: auto;
 }
+
+/* Product List Page */
+.productListWrapper{
+  margin-top: 1rem;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 67rem;
+   
+}
+.btn-createProduct{
+  padding: 0.55rem;
+  width: fit-content;
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-createProduct:hover{
+  cursor: pointer;
+  padding: 0.58rem;
+}

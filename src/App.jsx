@@ -14,6 +14,7 @@ import PlaceOrderPage from "./pages/PlaceOrderPage";
 import OrderPage from "./pages/OrderPage";
 import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
+import ProductListPage from "./pages/ProductListPage";
 
 function App() {
   return (
@@ -33,8 +34,9 @@ function App() {
           <Route path="cart/:id?" element={<CartPage />} />
 
           <Route path="admin/userlist" element={<UserListPage />} />
-
           <Route path="admin/user/:id/edit" element={<UserEditPage />} />
+
+          <Route path="admin/productlist" element={<ProductListPage />} />
         </Route>
       </Routes>
       <Footer />
