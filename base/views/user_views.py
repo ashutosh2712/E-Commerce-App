@@ -76,8 +76,36 @@ def getUserProfile(request):
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getUsers(request):
-    user = User.objects.all()  # user from token not the admin side suer
-    serializer = UserSerializer(user, many=True)
+    users = User.objects.all()  # user from token not the admin side suer
+    serializer = UserSerializer(users, many=True)
+
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def getUsersById(request,pk):
+    user = User.objects.get(id=pk)  # user from token not the admin side suer
+    serializer = UserSerializer(user, many=False)
+
+    return Response(serializer.data)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUser(request,pk):
+    user = User.objects.get(id=pk)  # user from token not the admin side suer
+    
+
+    data = request.data
+
+    user.first_name = data['name']
+    user.username = data['email']
+    user.email = data['email']
+    user.is_staff = data['isAdmin']
+
+    user.save()
+    
+    serializer = UserSerializer(user, many=False)
 
     return Response(serializer.data)
 
