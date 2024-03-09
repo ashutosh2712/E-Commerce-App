@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../actions/productActions";
+import { deleteProduct, listProducts } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +15,13 @@ const ProductListPage = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -22,7 +29,7 @@ const ProductListPage = () => {
     isloading: false,
   });
 
-  const [userIdToDelete, setUserIdToDelete] = useState(null);
+  const [productIdToDelete, setProductIdToDelete] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // Set the number of items per page
@@ -50,27 +57,27 @@ const ProductListPage = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
     setShowConfirmation({
       isloading: true,
     });
-    setUserIdToDelete(id);
+    setProductIdToDelete(id);
   };
   const confirmDeleteHandler = () => {
-    //delete product
+    dispatch(deleteProduct(productIdToDelete));
     setShowConfirmation({
       isloading: false,
     });
-    setUserIdToDelete(null);
+    setProductIdToDelete(null);
   };
 
   const cancelDeleteHandler = () => {
     setShowConfirmation({
       isloading: false,
     });
-    setUserIdToDelete(null);
+    setProductIdToDelete(null);
   };
   const createProductHandler = (product) => {
     console.log("Create Product");
@@ -86,6 +93,9 @@ const ProductListPage = () => {
           <i className="fas fa-plus"></i> Create Product
         </button>
       </div>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message className="errorMessage">{errorDelete}</Message>}
+
       {loading ? (
         <Loader />
       ) : error ? (
