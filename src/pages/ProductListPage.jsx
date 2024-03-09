@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, listProducts } from "../actions/productActions";
+import {
+  createProduct,
+  deleteProduct,
+  listProducts,
+} from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { Link, useNavigate } from "react-router-dom";
 import ConfirmationPopup from "../components/ConfirmationPopup";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstant";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
@@ -21,6 +26,14 @@ const ProductListPage = () => {
     error: errorDelete,
     success: successDelete,
   } = productDelete;
+
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -52,12 +65,18 @@ const ProductListPage = () => {
   };
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+
+    if (!userInfo.isAdmin) {
       navigate("/login");
     }
-  }, [dispatch, userInfo, successDelete]);
+
+    if (successCreate) {
+      navigate(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [dispatch, userInfo, successDelete, successCreate, createdProduct]);
 
   const deleteHandler = (id) => {
     setShowConfirmation({
@@ -79,8 +98,8 @@ const ProductListPage = () => {
     });
     setProductIdToDelete(null);
   };
-  const createProductHandler = (product) => {
-    console.log("Create Product");
+  const createProductHandler = () => {
+    dispatch(createProduct());
   };
   return (
     <div className="userListContainer">
@@ -95,6 +114,9 @@ const ProductListPage = () => {
       </div>
       {loadingDelete && <Loader />}
       {errorDelete && <Message className="errorMessage">{errorDelete}</Message>}
+
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message className="errorMessage">{errorCreate}</Message>}
 
       {loading ? (
         <Loader />
