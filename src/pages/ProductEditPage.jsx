@@ -4,8 +4,10 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProductDetails } from "../actions/productActions";
+import { listProductDetails, updateProduct } from "../actions/productActions";
 import FormContainer from "../components/FormContainer";
+import { PRODUCT_UPDATE_RESET } from "../constants/productConstant";
+import axios from "axios";
 
 const ProductEditPage = () => {
   const [name, setName] = useState("");
@@ -15,6 +17,7 @@ const ProductEditPage = () => {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const { id } = useParams();
   const productId = id;
@@ -26,24 +29,77 @@ const ProductEditPage = () => {
   const productDetails = useSelector((state) => state.productDetails);
   const { error, loading, product } = productDetails;
 
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    error: errorUpdate,
+    loading: loadingUpdate,
+    success: successUpdate,
+  } = productUpdate;
+
   useEffect(() => {
-    if (!product.name || product._id !== Number(productId)) {
-      dispatch(listProductDetails(productId));
+    if (successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      navigate("/admin/productlist");
     } else {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
+      if (!product.name || product._id !== Number(productId)) {
+        dispatch(listProductDetails(productId));
+      } else {
+        setName(product.name);
+        setPrice(product.price);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+        setDescription(product.description);
+      }
     }
-  }, [dispatch, product, productId]);
+  }, [dispatch, product, productId, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     //update Product
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        countInStock,
+        description,
+      })
+    );
   };
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+
+    formData.append("image", file);
+    formData.append("product_id", productId);
+
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const { data } = await axios.post(
+        `http://127.0.0.1:8000/api/products/upload`,
+        formData,
+        config
+      );
+
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      setUploading(false);
+    }
+  };
+
   return (
     <FormContainer>
       <Link to="/admin/productlist">
@@ -51,7 +107,10 @@ const ProductEditPage = () => {
       </Link>
       <div className="formWrapper">
         <h1>Edit Product</h1>
-
+        {loadingUpdate && <Loader />}
+        {errorUpdate && (
+          <Message className="errorMessage">{errorUpdate}</Message>
+        )}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -91,6 +150,17 @@ const ProductEditPage = () => {
               placeholder="Enter image"
             />
 
+            <label htmlFor="image-file">Choose File</label>
+            <input
+              className="registerInput"
+              type="file"
+              name="image-file"
+              id="image-file"
+              onChange={uploadFileHandler}
+            />
+
+            {uploading && <Loader />}
+
             <label htmlFor="brand">Brand</label>
             <input
               className="registerInput"
@@ -125,7 +195,7 @@ const ProductEditPage = () => {
             />
 
             <label htmlFor="description">Description</label>
-            <input
+            <textarea
               className="registerInput"
               type="text"
               name="description"
