@@ -1,4 +1,4 @@
-from ..models import Product
+from ..models import Product,Review
 from ..serializers import ProductSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -78,3 +78,47 @@ def uploadImage(request) :
     product.save()
     
     return Response('Image was uploaded')
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def createProductReview(request,pk):
+    user=request.user
+    product = Product.objects.get(_id=pk)
+    data=request.data
+    
+    #1 - Review already exists
+    alreadyExists = product.review_set.filter(user=user).exists()
+    
+    if alreadyExists :
+        content = {'error' : 'Product Already reviewed!'}
+        
+        return Response(content, status=status.HTTP_400_BAD_REQUEST)
+    
+    #2 - No Rating or 0
+    elif data['rating'] == 0:
+        content = {'error' : 'Please select rating!'}
+
+        return Response(content, status=status.HTTP_400_BAD_REQUEST)
+    #3 - Create review
+    else :
+        review = Review.objects.create(
+            user=user,
+            product=product,
+            name=user.first_name,
+            rating=data['rating'],
+            comment=data['comment']
+        )
+        reviews = product.review_set.all()
+        product.numReviews = len(reviews)
+        
+        total = 0
+        for review in reviews:
+            total += review.rating
+            
+        product.rating = total / len(reviews)
+        product.save()
+        
+        return Response({'success': 'Review was added'}, status=status.HTTP_200_OK)
+            
+        
+    
