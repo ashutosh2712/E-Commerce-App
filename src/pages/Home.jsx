@@ -6,13 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { useLocation } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  let keyword = location.search;
+
+  // console.log(location.search);
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <div className="homeContainer">

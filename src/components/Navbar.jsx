@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/userAction";
+import SearchBox from "./SearchBox";
 
 const Navbar = () => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -49,18 +50,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="NavSearch">
-        <input
-          className="NavSearchInput"
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Search Products.."
-        />
-        <button type="submit" className="SearchButton">
-          Search
-        </button>
-      </div>
+      <SearchBox />
 
       <div className="rightWrapper">
         <Link to="cart/" className="navbarEndItems">

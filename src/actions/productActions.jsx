@@ -20,25 +20,29 @@ import {
   PRODUCT_UPDATE_SUCCESS,
 } from "../constants/productConstant";
 
-export const listProducts = () => async (dispatch) => {
-  try {
-    dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get("http://127.0.0.1:8000/api/products/");
+export const listProducts =
+  (keyword = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: PRODUCT_LIST_REQUEST });
+      const { data } = await axios.get(
+        `http://127.0.0.1:8000/api/products${keyword}`
+      );
 
-    dispatch({
-      type: PRODUCT_LIST_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: PRODUCT_LIST_FAIL,
-      payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: PRODUCT_LIST_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: PRODUCT_LIST_FAIL,
+        payload:
+          error.response && error.response.data.error
+            ? error.response.data.error
+            : error.message,
+      });
+    }
+  };
 
 export const listProductDetails = (id) => async (dispatch) => {
   try {
