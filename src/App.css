@@ -34,7 +34,7 @@ a {
   gap: 0.2rem;
 }
 .NavSearchInput {
-  padding: 0.25rem;
+  padding: 0.25rem 0.25rem 0.25rem 1rem;
   border-radius: 0.25rem;
   width: 80vh;
   height: 70%;
@@ -716,4 +716,103 @@ th {
 .btn-createProduct:hover{
   cursor: pointer;
   padding: 0.58rem;
+}
+
+
+/*  Carosol */
+*{box-sizing: border-box}
+
+/* Slideshow container */
+.slideshow-container{
+ /* max-width: 1000px; */
+ width: 42vw;
+ height: auto;
+ position: relative;
+ margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top:50%;
+  z-index: 2;
+  width: auto;
+  margin-top: -1.3rem;
+  padding: 1rem;
+  color: #000;
+  font-weight: bold;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  transition: 0.6s ease;
+  
+  user-select: none;
+}
+
+/* Position the "next prev button" to the right */
+.prev{
+  left: 1rem;
+  border-radius: 0.35rem 0 0 0.35rem;
+}
+
+.next{
+  right: 1rem;
+  
+  border-radius: 0 0.35rem 0.35rem 0;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+
+/* Caption text */
+.text{
+  color: #000;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.75rem;
+  position: absolute;
+  bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot{
+  cursor:pointer;
+  height: 1rem;
+  width: 1rem;
+  margin: 0 0.1rem;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+  display: inline-block;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.caroselImg{
+  width: auto;
+  height: auto;
+  
+  object-fit: cover;
 }
