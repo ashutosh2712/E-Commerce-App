@@ -15,7 +15,6 @@ const ProductCarousel = () => {
 
   const plusSlides = (n) => {
     showSlides(currentSlideIndex + n);
-    console.log("Clicked");
   };
 
   const currentSlide = (n) => {
@@ -27,7 +26,6 @@ const ProductCarousel = () => {
     if (n > products.length) slideIndex = 1;
     if (n < 1) slideIndex = products.length;
     setCurrentSlideIndex(slideIndex);
-    console.log("showSlides");
   };
 
   useEffect(() => {
@@ -50,6 +48,7 @@ const ProductCarousel = () => {
     <Message className="errorMessage">{error}</Message>
   ) : (
     <div>
+      <h1>Top Products</h1>
       <div className="slideshow-container">
         {products.map((product, index) => (
           <div

@@ -14,17 +14,16 @@ a {
   color: #fff;
 }
 .NavContainer {
-  width: 100%;
+  width: 100vw;
   background-color: rgb(69, 67, 67);
-  display: grid;
-  grid-template-columns: 15% 55% 30%;
+  display: flex;
+  justify-content: space-evenly;
   color: #fff;
   padding: 0.5rem 0;
   height: auto;
 }
 .AppTitle {
   margin-top: 0.75rem;
-  margin-left: 3rem;
 }
 .AppTitle:hover {
   cursor: pointer;
@@ -51,8 +50,8 @@ a {
   color: #fff;
   padding: 0.5rem;
   font-weight: bold;
-  width: 10vh;
-  height: 90%;
+  width: auto;
+  height: 70%;
 }
 .SearchButton::placeholder {
   color: gray;
@@ -136,16 +135,22 @@ p:hover {
   margin-left: 2rem;
   margin-top: 2rem;
   margin-right: 2rem;
-  height: calc(100% - 70px);
+  height: auto;
 }
 
 .productsList {
   display: grid;
   margin-top: 2rem;
-  grid-template-rows: auto auto auto;
   grid-template-columns: 350px 350px 350px;
   gap: 1rem;
   justify-content: center;
+}
+
+
+.productItemsBody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .productItems {
@@ -165,15 +170,15 @@ p:hover {
 .productName,
 .productRating,
 .productPrice {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .reviewsNumber {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.ratingContainer span {
-  margin: 0.1rem;
+.ratingContainer {
+  margin-bottom: 0.5rem;
 }
 
 .homeLink {
@@ -348,6 +353,7 @@ p:hover {
 }
 
 /*Cart Page*/
+
 .cartTitle {
   display: flex;
   justify-content: center;
@@ -356,13 +362,13 @@ p:hover {
 }
 
 .cartItemImage {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
 }
 
 .cartProduct {
-  width: 230px;
+  width: auto;
 }
 
 .allCartItems {
@@ -379,7 +385,12 @@ p:hover {
   list-style: none;
   margin-top: 1rem;
 }
-
+.cartItemData{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
 .allCartItemParent{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -435,6 +446,10 @@ p:hover {
 
 .cartSubtotalContainer {
   margin-top: 2rem;
+
+}
+.subtotalBtn{
+  padding: 1.32rem;
 }
 
 /* ========== FORM ========= */
@@ -815,4 +830,121 @@ th {
   height: auto;
   
   object-fit: cover;
+}
+
+
+/* ========================== MEDIA QUERIES(TABLET)=================== */
+@media screen and (max-width: 1024px) {
+  .homeContainer{
+    align-items: center;
+  }
+  .productsList {
+    grid-template-columns: 350px 350px;
+  }
+
+  .NavContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .NavSearchInput{
+    width: auto;
+    height: auto;
+  }
+  .navTitle {
+    margin-bottom: 0.25rem;
+  }
+  .dropdown-content{
+    width: auto;
+  }
+  .allCartItemParent{
+    display: flex;
+    align-items: center;
+  }
+  .allCartItems{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .cartItemImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+}
+
+/* ========================== MEDIA QUERIES(MOBILE)=================== */
+@media screen and (max-width: 600px) {
+  .homeContainer{
+    align-items: center;
+  }
+  .productsList {
+    grid-template-columns: 1fr;
+  }
+
+  .NavContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+  .NavSearch {
+    flex-direction: column;
+    align-items: center;
+  }
+  .NavSearchInput{
+    width: auto;
+    height: 2rem;
+  }
+  .navTitle {
+    margin-bottom: 0.25rem;
+  }
+  .SearchButton{
+    width: 5rem;
+  }
+  .dropdown-content{
+    width: auto;
+  }
+  .allCartItemParent{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .allCartItem{
+    grid-template-columns: 1fr;
+  }
+  .cartItemImage {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+  }
+  .allCartItems{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .allCartItem {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cartProduct{
+    margin-top: 0.5rem;
+  }
+  .cartProductQty {
+
+    justify-content: space-between;
+    width: auto;
+  }
+
+  .cartEmptyError{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    height: auto;
+  }
 }

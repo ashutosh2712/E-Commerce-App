@@ -33,7 +33,6 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
-      <h1>Top Products</h1>
       {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
       {loading ? (

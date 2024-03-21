@@ -46,7 +46,7 @@ const Navbar = () => {
     <div className="NavContainer">
       <div className="AppTitle">
         <Link to="/" className="navbarEndItems">
-          <h2>CLICKSHOP</h2>
+          <h2 className="navTitle">CLICKSHOP</h2>
         </Link>
       </div>
 

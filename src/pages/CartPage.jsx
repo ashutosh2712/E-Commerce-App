@@ -43,7 +43,7 @@ const CartPage = () => {
       </div>
       <div className="cartItemData">
         {cartItems.length == 0 ? (
-          <Message className="errorMessage">
+          <Message className="errorMessage cartEmptyError">
             *Your Cart is empty
             <Link to="/">
               <button className="homeLinkFromCart">Go Back</button>
@@ -97,19 +97,22 @@ const CartPage = () => {
                 </li>
               ))}
             </ul>
+
             <ul className="listGroup cartSubtotalContainer">
               <li className="listGroupItem subtotalHeader">
                 <h3>
                   Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
                   ) items
                 </h3>
-                $
-                {cartItems.reduce(
-                  (acc, item) => acc + item.qty * item.price,
-                  0
-                )}
+                <p className="cartItemPrice">
+                  $
+                  {cartItems.reduce(
+                    (acc, item) => acc + item.qty * item.price,
+                    0
+                  )}
+                </p>
               </li>
-              <li className="listGroupItem">
+              <li className="listGroupItem subtotalBtn">
                 <button
                   className={
                     cartItems.length === 0
