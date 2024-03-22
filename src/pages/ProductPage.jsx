@@ -75,7 +75,7 @@ const ProductPage = () => {
             className="productPageImage"
           />
 
-          <ul className="listGroup">
+          <ul className="listGroup productPageProductDetails">
             <li className="listGroupItem">
               <h3>{product.name}</h3>
             </li>
@@ -92,7 +92,7 @@ const ProductPage = () => {
             </li>
           </ul>
 
-          <ul className="listGroup">
+          <ul className="listGroup productPriceContainer">
             <li className="listGroupItem priceItem">
               <p>Price:</p> <p className="priceValue">${product.price}</p>
             </li>
@@ -100,9 +100,9 @@ const ProductPage = () => {
               <p>Status:</p>
               <p className="stockStatus">
                 {product.countInStock > 0 ? (
-                  <span style={{ color: "green" }}>In Stock</span>
+                  <p style={{ color: "green", paddingTop: "0" }}>In Stock</p>
                 ) : (
-                  <span style={{ color: "red" }}>Out of Stock</span>
+                  <p style={{ color: "red", paddingTop: "0" }}>Out of Stock</p>
                 )}
               </p>
             </li>
@@ -110,7 +110,7 @@ const ProductPage = () => {
             {product.countInStock > 0 && (
               <li className="listGroupItem selectDropDown">
                 <label htmlFor="qtyNumber" className="qtyLabel">
-                  Qty:
+                  <p>Qty:</p>
                 </label>
                 <select
                   name="qtyNumber"
@@ -146,74 +146,88 @@ const ProductPage = () => {
               </div>
             </li>
           </ul>
-          <div className="reviewContainer">
-            <ul className="listGroup">
+
+          <ul className="listGroup reviewContianer">
+            <li className="listGroupItem">
+              <h2>Reviews</h2>
+            </li>
+            {product.reviews.length === 0 && (
               <li className="listGroupItem">
-                <h2>Reviews</h2>
+                <Message className="successMessage cartEmptyError">
+                  No Reviews!
+                </Message>
               </li>
-              {product.reviews.length === 0 && (
-                <li className="listGroupItem">
-                  <Message className="successMessage">No Reviews!</Message>
-                </li>
+            )}
+            {product.reviews.map((review) => (
+              <li className="listGroupItem" key={review._id}>
+                <h3 className="reviewName">{review.name}</h3>
+                <Rating value={review.rating} color="#f8e825" />
+                <p className="typedReviewDate">
+                  {review.createdAt.substring(0, 10)}
+                </p>
+                <p className="typedReviewDate">{review.comment}</p>
+              </li>
+            ))}
+            <li className="listGroupItem">
+              <h3>Write a Review</h3>
+              {loadingProductReview && <Loader />}
+              {successProductReview && (
+                <Message className="successMessage cartEmptyError">
+                  Review Added
+                </Message>
               )}
-              {product.reviews.map((review) => (
-                <li className="listGroupItem" key={review._id}>
-                  <strong>{review.name}</strong>
-                  <Rating value={review.rating} color="#f8e825" />
-                  <p>{review.createdAt.substring(0, 10)}</p>
-                  <p>{review.comment}</p>
-                </li>
-              ))}
-              <li className="listGroupItem">
-                <h4>Write a Review</h4>
-                {loadingProductReview && <Loader />}
-                {successProductReview && (
-                  <Message className="successMessage">Review Added</Message>
-                )}
-                {errorProductReview && (
-                  <Message className="errorMessage">
-                    {errorProductReview}
-                  </Message>
-                )}
-                {userInfo ? (
-                  <form onSubmit={submitHandler}>
+              {errorProductReview && (
+                <Message className="errorMessage cartEmptyError">
+                  {errorProductReview}
+                </Message>
+              )}
+              {userInfo ? (
+                <form onSubmit={submitHandler} className="reviewForm">
+                  <div className="reviewRating">
                     <label htmlFor="rating">Rating</label>
                     <select
                       name="rating"
                       id="rating"
                       value={rating}
+                      className="qtyValue"
                       onChange={(e) => setRating(e.target.value)}
                     >
-                      <option value="">select</option>
+                      <option value="">Select</option>
                       <option value="1">1 - Poor</option>
                       <option value="2">2 - Average</option>
                       <option value="3">3 - Good</option>
                       <option value="4">2 - Very Good</option>
                       <option value="5">5 - Excellent</option>
                     </select>
-                    <label htmlFor="review">Review</label>
-                    <textarea
-                      name="rating"
-                      id="rating"
-                      rows="10"
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                    ></textarea>
-                    <button disabled={loadingProductReview} type="submit">
-                      Submit
-                    </button>
-                  </form>
-                ) : (
-                  <Message className="successMessage">
-                    <p>
-                      {" "}
-                      Please <Link to="/login">Login</Link> to write a review{" "}
-                    </p>
-                  </Message>
-                )}
-              </li>
-            </ul>
-          </div>
+                  </div>
+
+                  <textarea
+                    name="rating"
+                    id="rating"
+                    rows="10"
+                    className="reviewTextarea"
+                    value={comment}
+                    placeholder="Your Review.."
+                    onChange={(e) => setComment(e.target.value)}
+                  ></textarea>
+                  <button
+                    disabled={loadingProductReview}
+                    type="submit"
+                    className="btn-register"
+                  >
+                    Submit
+                  </button>
+                </form>
+              ) : (
+                <Message className="successMessage cartEmptyError">
+                  <p>
+                    {" "}
+                    Please <Link to="/login">Login</Link> to write a review{" "}
+                  </p>
+                </Message>
+              )}
+            </li>
+          </ul>
         </div>
       )}
     </div>
