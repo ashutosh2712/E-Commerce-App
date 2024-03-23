@@ -43,52 +43,61 @@ const RegisterPage = () => {
         {error && <Message className="errorMessage">{error}</Message>}
         {loading && <Loader />}
         <form onSubmit={submitHandler} className="registerForm">
-          <label htmlFor="name">Name</label>
-          <input
-            className="registerInput"
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            required
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter Your name"
-          />
+          <div className="registerInputField">
+            <label htmlFor="name">Name</label>
+            <input
+              className="registerInput"
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              required
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter Your name"
+            />
+          </div>
 
-          <label htmlFor="email">Email Address</label>
-          <input
-            className="registerInput"
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Email"
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            className="registerInput"
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Your Password"
-          />
+          <div className="registerInputField">
+            <label htmlFor="email">Email Address</label>
+            <input
+              className="registerInput"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email"
+            />
+          </div>
 
-          <label htmlFor="ConfirmPassword">Confirm Password</label>
-          <input
-            className="registerInput"
-            type="password"
-            name="ConfirmPassword"
-            id="ConfirmPassword"
-            value={confirmPassword}
-            required
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm Password"
-          />
+          <div className="registerInputField">
+            <label htmlFor="password">Password</label>
+            <input
+              className="registerInput"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Your Password"
+            />
+          </div>
+
+          <div className="registerInputField">
+            <label htmlFor="ConfirmPassword">Confirm Password</label>
+            <input
+              className="registerInput"
+              type="password"
+              name="ConfirmPassword"
+              id="ConfirmPassword"
+              value={confirmPassword}
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm Password"
+            />
+          </div>
           <button type="submit" className="btn-register">
             Register
           </button>

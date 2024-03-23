@@ -35,28 +35,33 @@ const LoginPage = () => {
         {error && <Message className="errorMessage">{error}</Message>}
         {loading && <Loader />}
         <form onSubmit={submitHandler} className="registerForm">
-          <label htmlFor="email">Email Address</label>
-          <input
-            className="registerInput"
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Email"
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            className="registerInput"
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Your Password"
-          />
+          <div className="registerInputField">
+            <label htmlFor="email">Email Address</label>
+            <input
+              className="registerInput"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email"
+            />
+          </div>
+
+          <div className="registerInputField">
+            <label htmlFor="password">Password</label>
+            <input
+              className="registerInput"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Your Password"
+            />
+          </div>
           <button type="submit" className="btn-register">
             Sign In
           </button>
