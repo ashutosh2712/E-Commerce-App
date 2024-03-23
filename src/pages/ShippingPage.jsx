@@ -29,45 +29,53 @@ const ShippingPage = () => {
         <CheckoutSteps step1 step2></CheckoutSteps>
         <h1>Shipping</h1>
         <form onSubmit={submitHandler} className="registerForm">
-          <label htmlFor="address">Address</label>
-          <input
-            className="registerInput"
-            required
-            type="text"
-            value={address ? address : ""}
-            placeholder="Enter Address"
-            onChange={(e) => setAddress(e.target.value)}
-          />
+          <div className="registerInputField">
+            <label htmlFor="address">Address</label>
+            <input
+              className="registerInput"
+              required
+              type="text"
+              value={address ? address : ""}
+              placeholder="Enter Address"
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
 
-          <label htmlFor="city">City</label>
-          <input
-            className="registerInput"
-            required
-            type="text"
-            value={city ? city : ""}
-            placeholder="Enter City"
-            onChange={(e) => setCity(e.target.value)}
-          />
+          <div className="registerInputField">
+            <label htmlFor="city">City</label>
+            <input
+              className="registerInput"
+              required
+              type="text"
+              value={city ? city : ""}
+              placeholder="Enter City"
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
 
-          <label htmlFor="postalCode">Postal Code</label>
-          <input
-            className="registerInput"
-            required
-            type="text"
-            value={postalcode ? postalcode : ""}
-            placeholder="Enter PostalCode"
-            onChange={(e) => setPostalCode(e.target.value)}
-          />
+          <div className="registerInputField">
+            <label htmlFor="postalCode">Postal Code</label>
+            <input
+              className="registerInput"
+              required
+              type="text"
+              value={postalcode ? postalcode : ""}
+              placeholder="Enter PostalCode"
+              onChange={(e) => setPostalCode(e.target.value)}
+            />
+          </div>
 
-          <label htmlFor="country">Country</label>
-          <input
-            className="registerInput"
-            required
-            type="text"
-            value={country ? country : ""}
-            placeholder="Enter Country"
-            onChange={(e) => setCountry(e.target.value)}
-          />
+          <div className="registerInputField">
+            <label htmlFor="country">Country</label>
+            <input
+              className="registerInput"
+              required
+              type="text"
+              value={country ? country : ""}
+              placeholder="Enter Country"
+              onChange={(e) => setCountry(e.target.value)}
+            />
+          </div>
           <button type="submit" className="btn-register">
             Continue
           </button>

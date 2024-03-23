@@ -607,12 +607,12 @@ p:hover {
   height: 50px;
   object-fit: cover;
   border-radius: 0.25rem;
-  
 }
 
 .orderProductDetails{
   display: grid;
   grid-template-columns: 18% 50% 32%;
+  
 }
 
 .orderItemSum{
@@ -916,6 +916,10 @@ th {
     width: 40vw;
   
   }
+
+  .shippingSummary{
+    width: fit-content;
+  }
   
 }
 
@@ -1047,6 +1051,35 @@ th {
   .registerInput{
     width:auto;
   }
+  
+  .checkoutStepContainer{
+    gap: 1rem;
+    font-size: 16px;
+  }
 
+  .containerItems{
+    grid-template-columns: 1fr;
+    margin-left: 1rem;
+
+  }
+  .shippingSummary{
+    width: 90vw;
+  }
+
+  .orderProductDetails{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: fit-content;
+  }
+
+  .placeOrderImage{
+    width: 100px;
+    height: 100px;
+  }
+
+  .placeOrderBtn{
+    display: flex;
+    justify-content: center;
+  }
   
 }

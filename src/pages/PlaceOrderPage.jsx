@@ -126,7 +126,7 @@ const PlaceOrderPage = () => {
             </li>
           )}
 
-          <li className="listGroupItem">
+          <li className="listGroupItem placeOrderBtn">
             <button
               type="submit"
               className={
