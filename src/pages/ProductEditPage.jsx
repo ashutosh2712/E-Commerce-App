@@ -117,93 +117,109 @@ const ProductEditPage = () => {
           <Message className="errorMessage">{error}</Message>
         ) : (
           <form onSubmit={submitHandler} className="registerForm">
-            <label htmlFor="name">Name</label>
-            <input
-              className="registerInput"
-              type="text"
-              name="name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter Name"
-            />
+            <div className="registerInputField">
+              <label htmlFor="name">Name</label>
+              <input
+                className="registerInput"
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter Name"
+              />
+            </div>
 
-            <label htmlFor="price">price</label>
-            <input
-              className="registerInput"
-              type="number"
-              name="price"
-              id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Enter price"
-            />
+            <div className="registerInputField">
+              <label htmlFor="price">price</label>
+              <input
+                className="registerInput"
+                type="number"
+                name="price"
+                id="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="Enter price"
+              />
+            </div>
 
-            <label htmlFor="image">Image</label>
-            <input
-              className="registerInput"
-              type="text"
-              name="image"
-              id="image"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              placeholder="Enter image"
-            />
+            <div className="registerInputField">
+              <label htmlFor="image">Image</label>
+              <input
+                className="registerInput"
+                type="text"
+                name="image"
+                id="image"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                placeholder="Enter image"
+              />
+            </div>
 
-            <label htmlFor="image-file">Choose File</label>
-            <input
-              className="registerInput"
-              type="file"
-              name="image-file"
-              id="image-file"
-              onChange={uploadFileHandler}
-            />
+            <div className="registerInputField">
+              <label htmlFor="image-file">Choose File</label>
+              <input
+                className="registerInput"
+                type="file"
+                name="image-file"
+                id="image-file"
+                onChange={uploadFileHandler}
+              />
+            </div>
 
             {uploading && <Loader />}
 
-            <label htmlFor="brand">Brand</label>
-            <input
-              className="registerInput"
-              type="text"
-              name="brand"
-              id="brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-              placeholder="Enter Brand"
-            />
+            <div className="registerInputField">
+              <label htmlFor="brand">Brand</label>
+              <input
+                className="registerInput"
+                type="text"
+                name="brand"
+                id="brand"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                placeholder="Enter Brand"
+              />
+            </div>
 
-            <label htmlFor="countInStock">Stock</label>
-            <input
-              className="registerInput"
-              type="number"
-              name="countInStock"
-              id="countInStock"
-              value={countInStock}
-              onChange={(e) => setCountInStock(e.target.value)}
-              placeholder="Enter CountInStock"
-            />
+            <div className="registerInputField">
+              <label htmlFor="countInStock">Stock</label>
+              <input
+                className="registerInput"
+                type="number"
+                name="countInStock"
+                id="countInStock"
+                value={countInStock}
+                onChange={(e) => setCountInStock(e.target.value)}
+                placeholder="Enter CountInStock"
+              />
+            </div>
 
-            <label htmlFor="category">Category</label>
-            <input
-              className="registerInput"
-              type="text"
-              name="category"
-              id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              placeholder="Enter Category"
-            />
+            <div className="registerInputField">
+              <label htmlFor="category">Category</label>
+              <input
+                className="registerInput"
+                type="text"
+                name="category"
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Enter Category"
+              />
+            </div>
 
-            <label htmlFor="description">Description</label>
-            <textarea
-              className="registerInput"
-              type="text"
-              name="description"
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter Description"
-            />
+            <div className="registerInputField">
+              <label htmlFor="description">Description</label>
+              <textarea
+                className="registerInput"
+                type="text"
+                name="description"
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Enter Description"
+              />
+            </div>
 
             <button type="submit" className="btn-register">
               Update

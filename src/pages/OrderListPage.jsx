@@ -46,26 +46,30 @@ const OrderListPage = () => {
       ) : error ? (
         <Message className="errorMessage">{error}</Message>
       ) : (
-        <table>
+        <table className="htmlTable">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th>DETAILS</th>
+              <th className="htmlTableEle">ID</th>
+              <th className="htmlTableEle">USER</th>
+              <th className="htmlTableEle">DATE</th>
+              <th className="htmlTableEle">TOTAL</th>
+              <th className="htmlTableEle">PAID</th>
+              <th className="htmlTableEle">DELIVERED</th>
+              <th className="htmlTableEle">DETAILS</th>
             </tr>
           </thead>
           <tbody>
             {currentOrders.map((order) => (
               <tr key={order._id}>
-                <td>{order._id}</td>
-                <td>{order.user && order.user.username}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
-                <td>
+                <td className="htmltableTd">{order._id}</td>
+                <td className="htmltableTd">
+                  {order.user && order.user.username}
+                </td>
+                <td className="htmltableTd">
+                  {order.createdAt.substring(0, 10)}
+                </td>
+                <td className="htmltableTd">${order.totalPrice}</td>
+                <td className="htmltableTd">
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
@@ -73,7 +77,7 @@ const OrderListPage = () => {
                   )}
                 </td>
 
-                <td>
+                <td className="htmltableTd">
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
@@ -81,9 +85,9 @@ const OrderListPage = () => {
                   )}
                 </td>
 
-                <td>
+                <td className="htmltableTd">
                   <Link to={`/order/${order._id}`}>
-                    <i class="fa-solid fa-circle-info"></i>
+                    <i className="fa-solid fa-circle-info"></i>
                   </Link>
                 </td>
               </tr>

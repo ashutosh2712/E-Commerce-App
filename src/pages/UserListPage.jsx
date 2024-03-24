@@ -72,30 +72,30 @@ const UserListPage = () => {
       ) : error ? (
         <Message className="errorMessage">{error}</Message>
       ) : (
-        <table>
+        <table className="htmlTable">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIN</th>
-              <th>EDIT/DELETE</th>
+              <th className="htmlTableEle">ID</th>
+              <th className="htmlTableEle">NAME</th>
+              <th className="htmlTableEle">EMAIL</th>
+              <th className="htmlTableEle">ADMIN</th>
+              <th className="htmlTableEle">MODIFY</th>
             </tr>
           </thead>
           <tbody>
             {currentUsers.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
+                <td className="htmltableTd">{user._id}</td>
+                <td className="htmltableTd">{user.name}</td>
+                <td className="htmltableTd">{user.email}</td>
+                <td className="htmltableTd">
                   {user.isAdmin ? (
                     <i className="fas fa-check" style={{ color: "green" }}></i>
                   ) : (
                     <i className="fas fa-times"></i>
                   )}
                 </td>
-                <td>
+                <td className="htmltableTd">
                   <Link to={`/admin/user/${user._id}/edit`}>
                     <button>
                       <i className="fas fa-edit"></i>

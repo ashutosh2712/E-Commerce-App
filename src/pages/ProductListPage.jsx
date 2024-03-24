@@ -90,7 +90,7 @@ const ProductListPage = () => {
     dispatch(createProduct());
   };
   return (
-    <div className="userListContainer">
+    <div className="productListContainer">
       <div className="productListWrapper">
         <div className="productListInfo">
           <h1>Products</h1>
@@ -111,26 +111,26 @@ const ProductListPage = () => {
       ) : error ? (
         <Message className="errorMessage">{error}</Message>
       ) : (
-        <table>
+        <table className="htmlTable">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>PRICE</th>
-              <th>CATEGORY</th>
-              <th>BRAND</th>
-              <th>Edit/Delete</th>
+              <th className="htmlTableEle">ID</th>
+              <th className="htmlTableEle">NAME</th>
+              <th className="htmlTableEle">PRICE</th>
+              <th className="htmlTableEle">CATEGORY</th>
+              <th className="htmlTableEle">BRAND</th>
+              <th className="htmlTableEle">MODIFY</th>
             </tr>
           </thead>
           <tbody>
             {currentProducts.map((product) => (
               <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>${product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
-                <td>
+                <td className="htmltableTd">{product._id}</td>
+                <td className="htmltableTd">{product.name}</td>
+                <td className="htmltableTd">${product.price}</td>
+                <td className="htmltableTd">{product.category}</td>
+                <td className="htmltableTd">{product.brand}</td>
+                <td className="htmltableTd">
                   <Link to={`/admin/product/${product._id}/edit`}>
                     <button>
                       <i className="fas fa-edit"></i>

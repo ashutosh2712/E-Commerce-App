@@ -65,27 +65,32 @@ const UserEditPage = () => {
           <Message className="errorMessage">{error}</Message>
         ) : (
           <form onSubmit={submitHandler} className="registerForm">
-            <label htmlFor="name">Name</label>
-            <input
-              className="registerInput"
-              type="text"
-              name="name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter Name"
-            />
+            <div className="registerInputField">
+              <label htmlFor="name">Name</label>
+              <input
+                className="registerInput"
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter Name"
+              />
+            </div>
 
-            <label htmlFor="email">Email Address</label>
-            <input
-              className="registerInput"
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter Email"
-            />
+            <div className="registerInputField">
+              <label htmlFor="email">Email Address</label>
+              <input
+                className="registerInput"
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+              />
+            </div>
+
             <div className="isAdminChecked">
               <input
                 className="isCheckedInp"

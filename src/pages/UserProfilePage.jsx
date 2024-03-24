@@ -89,55 +89,65 @@ const UserProfilePage = () => {
         {error && <Message className="errorMessage">{error}</Message>}
         {loading && <Loader />}
         <form onSubmit={submitHandler} className="registerForm">
-          <label htmlFor="name">Name</label>
-          <input
-            className="registerInput"
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            required
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter Your name"
-          />
+          <div className="registerInputField">
+            <label htmlFor="name">Name</label>
+            <input
+              className="registerInput"
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              required
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter Your name"
+            />
+          </div>
 
-          <label htmlFor="email">Email Address</label>
-          <input
-            className="registerInput"
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Email"
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            className="registerInput"
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Your Password"
-          />
+          <div className="registerInputField">
+            <label htmlFor="email">Email Address</label>
+            <input
+              className="registerInput"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email"
+            />
+          </div>
 
-          <label htmlFor="ConfirmPassword">Confirm Password</label>
-          <input
-            className="registerInput"
-            type="password"
-            name="ConfirmPassword"
-            id="ConfirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm Password"
-          />
+          <div className="registerInputField">
+            <label htmlFor="password">Password</label>
+            <input
+              className="registerInput"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Your Password"
+            />
+          </div>
+
+          <div className="registerInputField">
+            <label htmlFor="ConfirmPassword">Confirm Password</label>
+            <input
+              className="registerInput"
+              type="password"
+              name="ConfirmPassword"
+              id="ConfirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm Password"
+            />
+          </div>
           <button type="submit" className="btn-register">
             Update
           </button>
         </form>
       </div>
+
       <div className="userOrderInfo">
         <h2>My orders</h2>
         {loadingOrders ? (
@@ -146,31 +156,33 @@ const UserProfilePage = () => {
           <Message className="errorMessage">{errorOrders}</Message>
         ) : (
           <>
-            <table>
+            <table className="htmlTable">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>DATE</th>
-                  <th>TOTAL</th>
-                  <th>PAID</th>
-                  <th>DELIVERED</th>
-                  <th></th>
+                  <th className="htmlTableEle">ID</th>
+                  <th className="htmlTableEle">DATE</th>
+                  <th className="htmlTableEle">TOTAL</th>
+                  <th className="htmlTableEle">PAID</th>
+                  <th className="htmlTableEle">DELIVERED</th>
+                  <th className="htmlTableEle"></th>
                 </tr>
               </thead>
               <tbody>
                 {currentOrders.map((order) => (
                   <tr key={order._id}>
-                    <td>{order._id}</td>
-                    <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>${order.totalPrice}</td>
-                    <td>
+                    <td className="htmltableTd">{order._id}</td>
+                    <td className="htmltableTd">
+                      {order.createdAt.substring(0, 10)}
+                    </td>
+                    <td className="htmltableTd">${order.totalPrice}</td>
+                    <td className="htmltableTd">
                       {order.isPaid ? (
                         order.paidAt.substring(0, 10)
                       ) : (
                         <i className="fas fa-times"></i>
                       )}
                     </td>
-                    <td>
+                    <td className="htmltableTd">
                       <Link to={`/order/${order._id}`}>
                         <button className="btn-register btn-dtl">
                           Details
