@@ -872,6 +872,9 @@ th {
   
   object-fit: cover;
 }
+.carouselHeding{
+  margin-bottom: 1rem;
+}
 
 
 /* ========================== MEDIA QUERIES(TABLET)=================== */
@@ -933,6 +936,11 @@ th {
   .userProfileContianer{
     grid-template-columns: 1fr;
     margin-left: 1rem;
+  }
+
+  .slideshow-container{
+    width: auto;
+    
   }
   
 }
@@ -1131,6 +1139,29 @@ th {
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
+  }
+
+  .slideshow-container{
+    width: auto;
+    
+  }
+  .caroselImg{
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .text{
+    color: #000;
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .prev, .next {
+   
+    padding: 0.5rem;
+   
+    font-size: 1rem;
+    
   }
   
 }

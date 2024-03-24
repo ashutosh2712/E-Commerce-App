@@ -30,16 +30,6 @@ const ProductCarousel = () => {
 
   useEffect(() => {
     dispatch(listTopProducts());
-
-    const intervalId = setInterval(() => {
-      // Increment current slide index
-      setCurrentSlideIndex((prevIndex) => (prevIndex % products.length) + 1);
-    }, 2500); // Change slide every 2 seconds
-
-    return () => {
-      // Clear interval on component unmount
-      clearInterval(intervalId);
-    };
   }, [dispatch]);
 
   return loading ? (
@@ -48,7 +38,7 @@ const ProductCarousel = () => {
     <Message className="errorMessage">{error}</Message>
   ) : (
     <div>
-      <h1>Top Products</h1>
+      <h1 className="carouselHeding">Top Products</h1>
       <div className="slideshow-container">
         {products.map((product, index) => (
           <div

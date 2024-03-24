@@ -30,12 +30,10 @@ const Navbar = () => {
 
   const showUserDropdown = () => {
     setIsOpenUser(!isOpenUser);
-    console.log("user");
   };
 
   const showAdminDropdown = () => {
     setIsOpenAdmin(!isOpenAdmin);
-    console.log("admin");
   };
 
   const logoutHandler = () => {
