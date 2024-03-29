@@ -23,7 +23,7 @@ a {
   height: auto;
 }
 .AppTitle {
-  margin-top: 0.75rem;
+  
 }
 .AppTitle:hover {
   cursor: pointer;
@@ -36,7 +36,7 @@ a {
   padding: 0.25rem 0.25rem 0.25rem 1rem;
   border-radius: 0.25rem;
   width: 80vh;
-  height: 70%;
+  
 }
 .NavSearchInput:focus {
   outline: none;
@@ -51,7 +51,7 @@ a {
   padding: 0.5rem;
   font-weight: bold;
   width: auto;
-  height: 70%;
+  
 }
 .SearchButton::placeholder {
   color: gray;
