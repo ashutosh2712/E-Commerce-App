@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
@@ -20,7 +20,7 @@ import OrderListPage from "./pages/OrderListPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <Routes>
         <Route to="/">
@@ -45,7 +45,7 @@ function App() {
         </Route>
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

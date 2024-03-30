@@ -295,7 +295,7 @@ p:hover {
 /* Message Conatiner */
 
 .messageContainer {
-  height: 3vh;
+  height: auto;
   margin: 1rem;
   padding: 1rem;
   font-size: 20px;
