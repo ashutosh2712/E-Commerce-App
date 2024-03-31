@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure--ueym@wylho^a0fix+(-02!4hx#st*-3wbbr!lia%7dmo@a)(+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','clickshop-a7aac0834ac0.herokuapp.com']
 
 
 # Application definition
