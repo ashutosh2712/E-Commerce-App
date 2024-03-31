@@ -15,6 +15,10 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -110,10 +114,10 @@ DATABASES = {
     # }
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "full_stack_db",
-        "USER": "ashutosh",
-        "PASSWORD" : "FullStack123",
-        "HOST" : "fitness-freak-computer-geek.cbe6aqywgptk.eu-north-1.rds.amazonaws.com",
+        "NAME": os.getenv('DB_NAME'),
+        "USER": os.getenv('DB_USER'),
+        "PASSWORD" : os.getenv('DB_PASSWORD'),
+        "HOST" : os.getenv('DB_HOST'),
         "PORT" : "5432"
     }
 }
@@ -180,12 +184,15 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-AWS_ACCESS_KEY_ID="AKIA3FLDYRO4TNW6A5XV"
-AWS_SECRET_ACCESS_KEY="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"
-AWS_STORAGE_BUCKET_NAME="clickshop-bucket"
+AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME=os.getenv('AWS_STORAGE_BUCKET_NAME')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+if os.getcwd() == '/app' :
+    DEBUG = False

@@ -13,6 +13,7 @@ psycopg2 = "*"
 whitenoise = "*"
 django-storages = {extras = ["s3"], version = "*"}
 boto3 = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
