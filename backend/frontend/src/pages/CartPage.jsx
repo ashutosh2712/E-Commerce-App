@@ -55,7 +55,7 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <li className="listGroupItem allCartItem" key={item.product}>
                   <img
-                    src={`http://localhost:8000${item.image}`}
+                    src={item.image}
                     alt={item.name}
                     className="cartItemImage"
                   />

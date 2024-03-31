@@ -49,7 +49,7 @@ const ProductCarousel = () => {
           >
             <Link to={`/product/${product._id}`}>
               <img
-                src={`http://localhost:8000${product.image}`}
+                src={product.image}
                 alt={product.name}
                 className="caroselImg"
               />

@@ -70,7 +70,7 @@ const ProductPage = () => {
       ) : (
         <div className="productDetails">
           <img
-            src={`http://localhost:8000${product.image}`}
+            src={product.image}
             alt={product.name}
             className="productPageImage"
           />

@@ -152,7 +152,7 @@ const OrderPage = () => {
                 {order.orderItems.map((item, index) => (
                   <li className="listGroupItem orderProductDetails" key={index}>
                     <img
-                      src={`http://localhost:8000${item.image}`}
+                      src={item.image}
                       alt={item.name}
                       className="placeOrderImage"
                     />

@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure--ueym@wylho^a0fix+(-02!4hx#st*-3wbbr!lia%7dmo@a)(+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "base.apps.BaseConfig",
     "rest_framework",
     "corsheaders",
+    "storages",
+    "base.apps.BaseConfig",
 ]
 
 REST_FRAMEWORK = {
@@ -66,6 +67,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -151,18 +153,36 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "storages.backends.s3.S3Storage",
+        
+#     },
+#     "staticfiles" : "storages.backends.s3.S3Storage"
+# }
+
 STATIC_URL = "/static/"
 
 MEDIA_URL = "/images/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "frontend/dist/static",
     ]
 
-MEDIA_ROOT = "static/images"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_ROOT = BASE_DIR / "static/images"
+
+#S3 Bucket Settings
+AWS_QUERYSTRING_AUTH=False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+AWS_ACCESS_KEY_ID="AKIA3FLDYRO4TNW6A5XV"
+AWS_SECRET_ACCESS_KEY="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"
+AWS_STORAGE_BUCKET_NAME="clickshop-bucket"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
