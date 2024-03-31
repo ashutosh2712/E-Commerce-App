@@ -55,7 +55,7 @@ const ProductCarousel = () => {
               />
 
               <h4 className="text">
-                {product.name}($ {product.price})
+                {product.name}(${product.price})
               </h4>
             </Link>
           </div>
