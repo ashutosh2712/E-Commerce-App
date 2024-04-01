@@ -9,6 +9,8 @@ import FormContainer from "../components/FormContainer";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstant";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://clickshop-a7aac0834ac0.herokuapp.com/";
+
 const ProductEditPage = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -88,7 +90,7 @@ const ProductEditPage = () => {
       };
 
       const { data } = await axios.post(
-        `http://127.0.0.1:8000/api/products/upload`,
+        `/api/products/upload`,
         formData,
         config
       );

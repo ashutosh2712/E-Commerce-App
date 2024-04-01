@@ -23,14 +23,13 @@ import {
   PRODUCT_UPDATE_SUCCESS,
 } from "../constants/productConstant";
 
+axios.defaults.baseURL = "https://clickshop-a7aac0834ac0.herokuapp.com/";
 export const listProducts =
   (keyword = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
-      const { data } = await axios.get(
-        `http://127.0.0.1:8000/api/products${keyword}`
-      );
+      const { data } = await axios.get(`/api/products${keyword}`);
 
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
@@ -50,7 +49,7 @@ export const listProducts =
 export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST });
-    const { data } = await axios.get(`http://127.0.0.1:8000/api/products/top`);
+    const { data } = await axios.get(`/api/products/top`);
 
     dispatch({
       type: PRODUCT_TOP_SUCCESS,
@@ -71,9 +70,7 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/products/${id}`
-    );
+    const { data } = await axios.get(`/api/products/${id}`);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
@@ -106,10 +103,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(
-      `http://127.0.0.1:8000/api/products/delete/${id}`,
-      config
-    );
+    const { data } = await axios.delete(`/api/products/delete/${id}`, config);
 
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
@@ -142,11 +136,7 @@ export const createProduct = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(
-      `http://127.0.0.1:8000/api/products/create`,
-      {},
-      config
-    );
+    const { data } = await axios.post(`/api/products/create`, {}, config);
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
@@ -181,7 +171,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://127.0.0.1:8000/api/products/update/${product._id}`,
+      `/api/products/update/${product._id}`,
       product,
       config
     );
@@ -225,7 +215,7 @@ export const createProductReview =
       };
 
       const { data } = await axios.post(
-        `http://127.0.0.1:8000/api/products/${productId}/reviews`,
+        `/api/products/${productId}/reviews`,
         review,
         config
       );

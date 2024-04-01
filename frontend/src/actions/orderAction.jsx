@@ -20,6 +20,8 @@ import {
   ORDER_PAY_SUCCESS,
 } from "../constants/orderConstant";
 
+axios.defaults.baseURL = "https://clickshop-a7aac0834ac0.herokuapp.com/";
+
 import { CART_SAVE_CLEAR_ITEMS } from "../constants/cartConstant";
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -39,11 +41,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(
-      `http://127.0.0.1:8000/api/orders/add/`,
-      order,
-      config
-    );
+    const { data } = await axios.post(`/api/orders/add/`, order, config);
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,
@@ -84,10 +82,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/orders/${id}/`,
-      config
-    );
+    const { data } = await axios.get(`/api/orders/${id}/`, config);
 
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
@@ -122,7 +117,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://127.0.0.1:8000/api/orders/${id}/pay/`,
+      `/api/orders/${id}/pay/`,
       paymentResult,
       config
     );
@@ -159,10 +154,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/orders/myorders/`,
-      config
-    );
+    const { data } = await axios.get(`/api/orders/myorders/`, config);
 
     dispatch({
       type: ORDER_LIST_MY_SUCCESS,
@@ -196,10 +188,7 @@ export const listOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://127.0.0.1:8000/api/orders`,
-      config
-    );
+    const { data } = await axios.get(`/api/orders`, config);
 
     dispatch({
       type: ORDER_LIST_SUCCESS,
@@ -234,7 +223,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://127.0.0.1:8000/api/orders/${order._id}/deliver`,
+      `/api/orders/${order._id}/deliver`,
       {},
       config
     );

@@ -59,7 +59,7 @@ a {
 }
 .SearchButton:hover {
   cursor: pointer;
-  padding: 0.7rem;
+  padding: 0.55rem;
   background-color: dodgerblue;
 }
 
@@ -69,7 +69,7 @@ a {
   align-items: center;
 }
 .rightItems {
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 0.25rem;
 }
 .item-one:hover,
